@@ -1,0 +1,20 @@
+.box{
+    border-radius: 10px;
+    border-style:solid;
+    margin-bottom: 10px;
+    margin-left: 100px;
+    margin-right:200px;
+    width:500px;
+}
+
+.user{
+    float:right;
+   
+}
+
+.box1{
+    overflow:auto;
+    height: 300px;
+}
+
+

@@ -15,7 +15,8 @@ class ChatApplication extends React.Component{
            this.state={
                message:'',
                name:'JOSHI',
-               displayInfor:[],
+               dob:new Date(),
+               displayInfor:{},
                error:''
            }
        }

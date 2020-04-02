@@ -1,7 +1,7 @@
 import React from 'react';
-import {bindActionCreators} from 'redux';
+
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux'
+
 import {Button,Paper,FormControl,Input,InputLabel} from '@material-ui/core'
 
 

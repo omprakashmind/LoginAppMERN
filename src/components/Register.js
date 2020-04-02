@@ -1,9 +1,7 @@
 import React from 'react';
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
 import {Paper,Button,FormControl,Input,InputLabel} from '@material-ui/core'
 import {Link} from 'react-router-dom'
-
+import axios from 'axios'
 
 
 
@@ -13,8 +11,9 @@ class Register extends React.Component{
         super(props)
         this.state={
             name:'',
-            id:'',
-            passoword:''
+            username:'',
+            password:'',
+            date:new Date()
         }
     }
 
@@ -22,6 +21,23 @@ class Register extends React.Component{
         this.setState({
             [event.target.name]:event.target.value
         })
+    }
+
+
+
+    registerValue=(e)=>{
+      e.preventDefault();
+        let name1=this.state.name
+        let username1=this.state.username
+        let password1=this.state.password
+        let date=new Date()
+
+        axios.post('http://localhost:5000/user/add',({name:name1,dob:date,username:username1,password:password1}))
+        .then(res=>{
+            console.log(res);   
+        })
+        .catch(err=>{console.log(err)})
+
     }
 
         render(){
@@ -35,12 +51,12 @@ class Register extends React.Component{
                           
                           <FormControl required margin="normal" fullWidth>
                               <InputLabel htmlFor="name">NAME</InputLabel>
-                              <Input id="name" name="name" onChange={this.changeValue}/>
+                              <Input id="String" name="name" onChange={this.changeValue}/>
                           </FormControl>
 
                           <FormControl required margin="normal" fullWidth>
-                              <InputLabel htmlFor="id">EMAIL-ID</InputLabel>
-                              <Input type="email" id="email" name="id" onChange={this.changeValue}/>
+                              <InputLabel htmlFor="id">USERNAME(EMAIL-id)</InputLabel>
+                              <Input type="email" id="email" name="username" onChange={this.changeValue}/>
                           </FormControl>
 
                           <FormControl required margin="normal" fullWidth>

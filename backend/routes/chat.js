@@ -1,13 +1,13 @@
 const router= require('express').Router();
 let CHAT=require('../models/chat.models')
 
-router.route('/').get((req,res)=>{
-    MESSAGE.find()
+router.get('/' ,async(req,res)=>{
+    CHAT.find()
     .then(message=>res.json(message))
     .catch(err=>res.status(400).json('Error' +err))
 })
 
-router.route('/add').post((req,res)=>{
+router.post('/add',async(req,res)=>{
    const name=req.body.name;
    const dob=req.body.dob;
    const message=req.body.message;

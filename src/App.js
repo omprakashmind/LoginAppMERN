@@ -3,6 +3,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import ChatApplication from './components/ChatApplication';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
+// import {ProtectedRoute} from "./components/protected.route"
 
 
 

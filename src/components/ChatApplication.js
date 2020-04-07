@@ -7,6 +7,8 @@ import {Link} from 'react-router-dom'
 import {Button,FormControl,Input,InputLabel, Paper} from '@material-ui/core'
 import SendIcon from '@material-ui/icons/Send';
 import './styles.css';
+import axios from 'axios';
+
 
 
 class ChatApplication extends React.Component{
@@ -16,10 +18,23 @@ class ChatApplication extends React.Component{
                message:'',
                name:'JOSHI',
                dob:new Date(),
-               displayInfor:{},
+               displayInfor:[],
                error:''
            }
        }
+    
+       componentDidMount=()=>{
+         axios.get('http://localhost:5000/chat/')
+         .then((res)=>{
+             this.setState({
+                 displayInfor:res['data']
+             })
+         })
+         .catch(err=>console.log(err))
+
+       }
+
+
 
        changeValue=(event)=>{
            this.setState({
@@ -31,23 +46,38 @@ class ChatApplication extends React.Component{
            event.preventDefault()
            
            let val3=this.state.name
-           let val4=this.state.message
-           if(val4.trim().length>0)
+           let val4=this.state.message.trim();
+           let dob1=new Date();
+           console.log(dob1)
+           if(val4.length>0)
            {
-           let obj=new Object();
-           obj['name']=val3
-           obj['message']=val4
+               axios.post('http://localhost:5000/chat/add', {
+                "name":val3,
+              "message":val4
+            })
+               .then(res=>{
+                   console.log(res);
+                   this.setState({
+                       message:''
+                   })
+               })
+               .catch(err=>{
+                   console.log(err);
+               })
+           }
+           
+           axios.get('http://localhost:5000/chat/')
+           .then(res=>{
+               this.setState({
+                   displayInfor:res['data']
+               })
+           })
+           .catch(err=>console.log(err))
 
-           let infor=this.state.displayInfor
-           infor.push(obj)
-
-             this.setState({
-               displayInfor:infor,
-               message:'',
-               error:''
-              })
-            }
        }
+
+
+
 
        render(){
 
